@@ -1,10 +1,5 @@
 <template>
     <div class="phone login-inp">
-        <div class="loading-mask modal-mask">
-            <div class="loading-content content">
-                <i class="mus jiazai"></i>
-            </div>
-        </div>
         <div class="phone-header login-inp-header bg">
             <i class="mus xiangxia3 back" v-on:click="back"></i>
             <span>手机登陆</span>
@@ -26,22 +21,25 @@
             </div>
             <div class="inp-btn bg" @click="login">{{loginBtnText}}</div>
         </div>
+
+        <Loading :show="isShow"/>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
 import API from '@/api/login/phone'
+import Loading from '@/components/loading/loading'
 export default {
   data(){
     return {
         phone:"",//手机号
         password:"",//密码
         loginBtnText:"登录",
-        showLoading:true
+        isShow:false
     }
   },
   beforeCreate() {
-      console.log(API,this)
+    //   console.log(API,this)
   },
   methods: {
       // 回退
@@ -52,14 +50,33 @@ export default {
             console.log(this.phone,this.password)
             this.loginBtnText = "登录中..."
 
-            setTimeout(() => {
+            //509 密码错误超过限制
+            //502 密码错误
+            //415 IP 高频
+            //501 账号不存在
+            // setTimeout(() => {
+            //     this.loginBtnText = "登录"
+            // }, 1000);
+
+            // this.isShow = true
+            // setTimeout(() => {
+            //     this.isShow = false
+            // }, 2000);
+            this.isShow = true
+            API.phone({phone:this.phone,password:this.password}).then((res)=>{
+                console.log("res",res)
+                this.isShow = false
+                if(res.code == 200){
+                    this.loginBtnText = "登录"
+                    this.$router.push({path:"/playlist"})
+
+                    localStorage.setItem("user",JSON.stringify(res))
+                }
+            }).catch((err)=>{
+                this.isShow = false
                 this.loginBtnText = "登录"
-            }, 1000);
-        //   API.phone({phone:this.phone,password:this.password}).then((res)=>{
-        //       console.log(res)
-        //   }).catch((err)=>{
-        //       console.log(err)
-        //   })
+                console.log("err",err)
+            })
       },
       clearPhoneVal(){
         //   清除phone输入框的值
@@ -67,7 +84,7 @@ export default {
       }
   },
   components: {
-
+      Loading
   }
 }
 </script>
@@ -138,21 +155,4 @@ export default {
             }
         }
     }
-
-    .modal-mask{
-        position: fixed;
-        z-index:10000;
-        top:0;
-        right:0;
-        bottom:0;
-        left:0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        
-        .loading-content i{
-            font-size:32px;
-        }
-    }
-
 </style>
