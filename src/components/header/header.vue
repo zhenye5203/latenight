@@ -28,37 +28,37 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="less">
   .header{
     width:100%;
     height:46px;
     background:#000;
     position:relative;
     z-index:1;
+    header{
+      position:fixed;
+      top:0;
+      width:100%;
+      height:46px;
+      background:@themeColor;
+      display: flex;
+      align-items:center;
+      z-index:9999;
+      .mus{
+        font-size:24px;
+        /* font-weight: bold; */
+        color:#FFFFFF;
+        margin:0 8px;
+      }
+      .tab{
+        margin:0 auto;
+        .mus{
+          color:#f5f5f5;
+        } 
+        .mus.tab-active{
+          color:#fff;
+        } 
+      }
+    }
   }
-  header{
-    position:fixed;
-    top:0;
-    width:100%;
-    height:46px;
-    background:rgba(16,18,23,1);
-    display: flex;
-    align-items:center;
-    z-index:9999;
-  }
-  .tab{
-    margin:0 auto;
-  }
-  header .mus{
-    font-size:24px;
-    /* font-weight: bold; */
-    color:#FFFFFF;
-    margin:0 8px;
-  }
-  .tab .mus{
-    color:#ccc;
-  } 
-  .tab .mus.tab-active{
-    color:#fff;
-  } 
 </style>
