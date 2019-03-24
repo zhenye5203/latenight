@@ -2,7 +2,10 @@ import axios from 'axios'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // axios.defaults.headers.post['xhrFields'] = 'withCredentials: true';
+// 跨域请求携带cookie
 axios.defaults.withCredentials = true; 
+
+
 let base = "http://localhost:3000"
 
 export const GET = (url, params) => {
