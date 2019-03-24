@@ -14,7 +14,7 @@ module.exports = {
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
-    port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
+    port: 8082, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: false,
     errorOverlay: true,
     notifyOnErrors: true,
@@ -23,7 +23,7 @@ module.exports = {
     //开启跨域
     proxyTable: {
       '/api': {
-        target: 'http://localhost',
+        target: 'http://localhost:3000',
         changeOrigin: true,
         pathRewrite: {
           '^/api': ''

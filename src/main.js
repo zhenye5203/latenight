@@ -21,6 +21,8 @@ Vue.use(VueAxios,axios)
 
 // Vue.prototype.host = "/api"
 
+// 引入vuex store
+import store from './store'
 
 Vue.config.productionTip = false //阻止启动生产消息
 
@@ -28,6 +30,7 @@ Vue.config.productionTip = false //阻止启动生产消息
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 })

@@ -60,20 +60,28 @@
 
 <script type="text/ecmascript-6">
 import Header from '@/components/header/header'
+import Toast from '@/components/toast'
 import BScroll from 'better-scroll'
 
 import API from "@/api/playlist/msg_songsheet_coll"
+
+import {mapGetters} from 'vuex'
 export default {
+  computed:{
+    ...mapGetters([
+      'toast'
+    ])
+  },
   data () {
     return {
-
+      show:false
     }
   },
   mounted() {
-
     // 设置滚动条
     let wrapper = document.querySelector(".wrapper")
     let scroll = new BScroll(wrapper,{
+      click:true,
       bounce:{
         top:false,
         left:true,
@@ -82,33 +90,30 @@ export default {
       }
     })
     // 获取用户信息，歌单，收藏，mv，dj数量
-    this.songSheetASColl()
-    // this.userDetail()
+    // this.songSheetASColl()
+    this.userDetail()
   },
   methods: {
     songSheetASColl(){
       //301 错误 需要登录
       API.SongSheetASColl({}).then(res=>{
         console.log(res)
-      }).catch(err=>{
-        console.log(err)
-        this.$router.push("/login")
-        // if(err.indexOf("301") != -1){
-        //   this.$router.push("/login")
-        // }
       })
     },
 
     userDetail(){
-      API.userDetail({uid:1787854984}).then(res=>{
+      let uid = 1787854984
+      // let uid = 1787854984
+      API.userDetail({uid}).then(res=>{
         console.log(res)
       }).catch(err=>{
-        console.log(err)
+
       })
     }
   },
   components: {
-    Header
+    Header,
+    Toast
   }
 }
 </script>
