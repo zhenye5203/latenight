@@ -25,11 +25,6 @@ export default {
         }
     },
     watch:{
-        // show(newVal,oldVal){
-        //     this.isShow = this.data.flag
-        //     this.message = this.data.msg
-        //     console.log(newVal,oldVal)
-        // }
         toastUpdate:{
             handler(newVal,oldVal){
                 this.isShow = this.data.flag
@@ -54,7 +49,6 @@ export default {
         border-radius:4px;
         color:#FFFFFF;
         background:rgba(0,0,0,.8);
-        // animation:Toast 1.5s; 
         z-index:99999;
     }
 
