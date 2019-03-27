@@ -21,8 +21,26 @@ Vue.use(VueAxios,axios)
 
 // Vue.prototype.host = "/api"
 
+// 引入vue-touch
+import VueTouch from 'vue-touch'
+
+Vue.use(VueTouch,{name:'v-touch'})
+VueTouch.config.swipe = {
+  threshold:60,//手机的滑动距离
+  direction: 'horizontal'
+}
+
 // 引入vuex store
 import store from './store'
+
+// 获取用户详情并提交到vuex中
+
+// router.beforeEach((to,from,next)=>{
+//   console.log(to,from,next)
+//   let user = localStorage.getItem('user')
+//   console.log(user)
+// })
+
 
 Vue.config.productionTip = false //阻止启动生产消息
 

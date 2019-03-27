@@ -4,7 +4,8 @@ export default {
     SongSheetASColl: params =>{
         return API.GET("/user/subcount",params)
     },
-    userDetail:params =>{
-        return API.GET("/user/detail",params)
+    PlayList:params => {
+        // 参数为{uid}
+        return API.GET("/user/playlist",params)
     }
 }
