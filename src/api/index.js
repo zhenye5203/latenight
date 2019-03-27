@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from './request'
 
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 // axios.defaults.headers.post['xhrFields'] = 'withCredentials: true';
@@ -6,14 +6,14 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 axios.defaults.withCredentials = true; 
 
 
-let base = "http://localhost:3000"
+// let base = "http://localhost:3000"
 
 export const GET = (url, params) => {
-    return axios.get(`${base}${url}`, { params }).then(res => res.data)
+    return axios.get(`${url}`, { params }).then(res => res.data)
 }
 export const POST = (url, params) => {
-    return axios.post(`${base}${url}`, params).then(res => res.data)
+    return axios.post(`${url}`, params).then(res => res.data)
 }
 export const PUT = (url, params) => {
-    return axios.put(`${base}${url}`, { params }).then(res => res.data)
+    return axios.put(`${url}`, { params }).then(res => res.data)
 }

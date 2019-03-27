@@ -10,7 +10,7 @@
                     <i class="mus icon-phone"></i>
                     <span>+86</span>
                 </div>
-                <input type="text" name='phone' class="inp" @input="phone = $event.target.value" :value="phone" placeholder="请输入手机号">
+                <input type="text" name='phone' class="inp" @input="phone = $event.target.value"  :value="phone" placeholder="请输入手机号">
                 <i class="mus guanbi1" v-show="phone!=''" @click="clearPhoneVal"></i>
             </div>
             <div class="inp-item">
@@ -29,6 +29,7 @@
 <script type="text/ecmascript-6">
 import API from '@/api/login/phone'
 import Loading from '@/components/loading/loading'
+import {mapMutations} from 'vuex'
 export default {
   data(){
     return {
@@ -42,26 +43,27 @@ export default {
     //   console.log(API,this)
   },
   methods: {
+      ...mapMutations({
+          setToastFlag:'SET_TOASTFLAG'
+      }),
       // 回退
       back(){
           this.$router.push({ path: '/login' })
       },
-      login(){
-            console.log(this.phone,this.password)
-            this.loginBtnText = "登录中..."
-
+      login(){       
             //509 密码错误超过限制
             //502 密码错误
             //415 IP 高频
             //501 账号不存在
-            // setTimeout(() => {
-            //     this.loginBtnText = "登录"
-            // }, 1000);
-
-            // this.isShow = true
-            // setTimeout(() => {
-            //     this.isShow = false
-            // }, 2000);
+            console.log(this.phone,this.password)
+            if(this.phone.trim() === ""){
+                this.setToastFlag("请输入手机号")
+                return
+            }else if(this.password.trim() === ""){
+                this.setToastFlag("请输入密码")
+                return
+            }
+            this.loginBtnText = "登录中..."
             this.isShow = true
             API.phone({phone:this.phone,password:this.password}).then((res)=>{
                 console.log("res",res)
@@ -69,13 +71,11 @@ export default {
                 if(res.code == 200){
                     this.loginBtnText = "登录"
                     this.$router.push({path:"/playlist"})
-
                     localStorage.setItem("user",JSON.stringify(res))
                 }
             }).catch((err)=>{
                 this.isShow = false
                 this.loginBtnText = "登录"
-                console.log("err",err)
             })
       },
       clearPhoneVal(){
