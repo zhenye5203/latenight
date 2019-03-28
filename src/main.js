@@ -19,6 +19,13 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 Vue.use(VueAxios,axios)
 
+
+//引入图片懒加载
+import VueLazyLoad from 'vue-lazyload'
+Vue.use(VueLazyLoad,{
+  error:require('@/assets/loading/error.png'),//图片加载错误时的显示
+  loading:require('@/assets/loading/loading.png'),//图片懒加载是的图片
+})
 // Vue.prototype.host = "/api"
 
 // 引入vue-touch

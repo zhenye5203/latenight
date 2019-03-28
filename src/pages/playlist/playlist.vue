@@ -21,7 +21,7 @@
             <ul class="songsheet-ul">
               <li class="songsheet-li-item" v-for="item in createSongList" :key="item.id">
                 <div class="item-left">
-                  <img :src="item.coverImgUrl" alt="">
+                  <img v-lazy="item.coverImgUrl" alt="">
                 </div>
                 <div class="item-right">
                   <span class="songsheet-name">{{item.name}}</span>
@@ -42,7 +42,7 @@
             <ul class="songsheet-ul">
               <li class="songsheet-li-item" v-for="item in collSongList" :key="item.id">
                 <div class="item-left">
-                  <img :src="item.coverImgUrl" alt="">
+                  <img v-lazy="item.coverImgUrl" alt="">
                 </div>
                 <div class="item-right">
                   <span class="songsheet-name">{{item.name}}</span>
@@ -89,13 +89,14 @@ export default {
     // 设置滚动条
     let wrapper = document.querySelector(".wrapper")
     let scroll = new BScroll(wrapper,{
-      click:true,
-      bounce:{
-        top:false,
+      click:true,//默认为false，为false的时候better-scroll将会禁止click时间
+      bounce:{//当滚动超过边缘的时候会有一小段回弹动画。设置为 true 则开启动画。
+        top:true,
         left:true,
-        bottom:false,
+        bottom:true,
         right:true
-      }
+      },
+      momentum:true,//当快速在屏幕上滑动一段距离的时候，会根据滑动的距离和时间计算出动量，并生成滚动动画。设置为 true 则开启动画。
     })
     // 获取用户信息，歌单，收藏，mv，dj数量
     // this.songSheetASColl()
