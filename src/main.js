@@ -43,9 +43,14 @@ import store from './store'
 // 获取用户详情并提交到vuex中
 
 // router.beforeEach((to,from,next)=>{
-//   console.log(to,from,next)
 //   let user = localStorage.getItem('user')
 //   console.log(user)
+//   if(user != null){
+//     next()
+//   } else if (to.path !== '/'){
+//     next({path:'/login'})
+//     store.commit('SET_TOASTFLAG',"请重新登录")
+//   }
 // })
 
 

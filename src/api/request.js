@@ -13,7 +13,6 @@ const Axios = axios.create({
 // aioxs的request拦截器（发送请求时拦截）
 Axios.interceptors.request.use(
     config => {
-        // console.log(config)
         return Promise.resolve(config)
     },
     err => {
@@ -24,7 +23,6 @@ Axios.interceptors.request.use(
 // aioxs的response拦截器（对请求返回值进行处理）
 Axios.interceptors.response.use(
     res => {
-        // console.log(res)
         return Promise.resolve(res)
     },
     err => {

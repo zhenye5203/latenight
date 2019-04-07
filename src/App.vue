@@ -10,7 +10,7 @@
 <script>
 import Toast from '@/components/toast'
 import API from '@/api/login/login_status'
-
+import Header from '@/components/header/header'
 import store from './store'
 import {mapGetters} from 'vuex'
 
@@ -36,7 +36,8 @@ export default {
   },
 
   components:{
-    Toast
+    Toast,
+    Header
   }
 }
 </script>
