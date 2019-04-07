@@ -5,7 +5,7 @@ const state = {
         msg:""
     },
     loginStatus:{},
-    handleUser: '' || localStorage.getItem('user')
+    handleUser: '' || localStorage.getItem('user'),
+    songSheet:{},//歌单信息
 }
-
 export default state
