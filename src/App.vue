@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <!-- <Header /> -->
     <v-touch v-on:swipeleft="onSwipeLeft" v-on:swiperight="onSwipeRight" >
       <router-view/>
     </v-touch>

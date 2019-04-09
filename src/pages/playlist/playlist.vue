@@ -1,7 +1,7 @@
 <template>
 <div class="playlist">
   <Header />
-  <Scroll class="wrapper" :data="list" :probeType="probeType" :listen-scroll="listenScroll" >
+  <Scroll class="wrapper" :data="list" :probeType="probeType" :listen-scroll="listenScroll" :params='{}'>
     <div class="content">
       <div class="song-status">
         <ul class="song-status-ul">
@@ -77,7 +77,8 @@ export default {
     }
   },
   created() {
-    this.uid = this.user.account.id
+    let user = JSON.parse(localStorage.getItem('user'))
+    this.uid = user.account.id
     this.probeType = 3
     this.listenScroll = true
   },

@@ -1,5 +1,5 @@
 <template>
-    <div ref="wrapper" class="scroll-wrapper">
+    <div ref="wrapper" :class="flex?'scroll-wrapper-height':'scroll-wrapper'">
         <slot></slot>    
     </div> 
 </template>
@@ -25,9 +25,18 @@ export default {
         click:{//better-scroll中是否禁用click时间
             type:Boolean,
             default:true
+        },
+        flex:{
+            type:Boolean,//是否为flex 固定高度
+            default:false
+        },
+        params:{
+            type:Object,//参数
+            default:{}
         }
     },
     mounted() {
+        console.log(this.flex)
         setTimeout(()=>{
             this._inintScroll()
         },20)
@@ -42,7 +51,8 @@ export default {
             if(!this.$refs.wrapper) return
             this.scroll = new BScroll(this.$refs.wrapper,{
                 probeType:this.probeType,
-                click:this.click
+                click:this.click,
+                ...this.params
             })
             if(this.listenScroll){
                 this.scroll.on('scroll',(pos)=>{
@@ -73,8 +83,12 @@ export default {
 </script>
 
 <style scoped lang='less'>
-    // .scroll-wrapper{
-    //     width: 100%;
-    //     height:100%;
-    // }
+    .scroll-wrapper{
+        width: 100%;
+        // height:100%;
+    }
+    .scroll-wrapper-height{
+        width: 100%;
+        height:100%;
+    }
 </style>

@@ -44,7 +44,8 @@ export default {
   },
   methods: {
       ...mapMutations({
-          setToastFlag:'SET_TOASTFLAG'
+          setToastFlag:'SET_TOASTFLAG',
+          setHandleUser:'SET_HANDLEUSER'
       }),
       // 回退
       back(){
@@ -66,10 +67,10 @@ export default {
             this.loginBtnText = "登录中..."
             this.isShow = true
             API.phone({phone:this.phone,password:this.password}).then((res)=>{
-                console.log("res",res)
                 this.isShow = false
                 if(res.code == 200){
                     this.loginBtnText = "登录"
+                    // this.setHandleUser(res)
                     this.$router.push({path:"/playlist"})
                     localStorage.setItem("user",JSON.stringify(res))
                 }

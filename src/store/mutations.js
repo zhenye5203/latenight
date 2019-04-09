@@ -8,6 +8,7 @@ const mutations = {
         state.loginStatus = data
     },
     [type.SET_HANDLEUSER](state,data){
+        console.log(data)
         state.handleUser = data
     },
     [type.SET_SONGSHEET](state,songsheet){//提交歌单信息
